@@ -10,6 +10,8 @@ import tailwindcss from "tailwindcss";
 const SITE_ROOT = "./_site";
 const POST_BUILD_STYLESHEET = `${SITE_ROOT}/assets/css/`;
 const PRE_BUILD_STYLESHEET = "./src/style.css";
+const POST_BUILD_IMAGES = `${SITE_ROOT}/assets/images/`;
+const PRE_BUILD_IMAGES = "./src/images/**/*.{jpg,jpeg,png}";
 const TAILWIND_CONFIG = "./tailwind.config.js";
 
 // Fix for Windows compatibility
@@ -43,6 +45,17 @@ task("processStyles", () => {
     .pipe(dest(POST_BUILD_STYLESHEET));
 });
 
+task("processImages", () => {
+  browserSync.notify("Compiling images...");
+
+  return src(PRE_BUILD_IMAGES)
+    // .pipe(newer(POST_BUILD_IMAGES)) // Only consider files that do not exist at destination
+    // .pipe(flatMap(retinaVersions)) // flatMap is used to create additional variants of iamges
+    // .pipe(scaleImages(imageFileName)) // optional parameter is used to format output file names
+    // .pipe(imagemin([mozjpeg(), pngquant()])) // Here imagemin is instructed to use mozjpeg and pngquant instead of default (lossless) algorithms
+    .pipe(dest(POST_BUILD_IMAGES));
+})
+
 task("startServer", () => {
   browserSync.init({
     files: [SITE_ROOT + "/**"],
@@ -59,6 +72,9 @@ task("startServer", () => {
   watch(
     [
       "**/*.css",
+      "**/*.jpeg",
+      "**/*.png",
+      "**/*.jpg",
       "**/*.html",
       "**/*.js",
       "**/*.md",
@@ -71,7 +87,7 @@ task("startServer", () => {
   );
 });
 
-const buildSite = series("buildJekyll", "processStyles");
+const buildSite = series("buildJekyll", "processStyles", "processImages");
 
 exports.serve = series(buildSite, "startServer");
 exports.default = series(buildSite);
