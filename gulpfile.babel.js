@@ -9,9 +9,11 @@ import tailwindcss from "tailwindcss";
 
 const SITE_ROOT = "./_site";
 const POST_BUILD_STYLESHEET = `${SITE_ROOT}/assets/css/`;
-const PRE_BUILD_STYLESHEET = "./src/style.css";
+const PRE_BUILD_STYLESHEET = "./src/styles/style.css";
 const POST_BUILD_IMAGES = `${SITE_ROOT}/assets/images/`;
 const PRE_BUILD_IMAGES = "./src/images/**/*.{jpg,jpeg,png,gif}";
+const POST_BUILD_FILES = `${SITE_ROOT}/assets/files/`;
+const PRE_BUILD_FILES = "./src/files/**/*.*";
 const TAILWIND_CONFIG = "./tailwind.config.js";
 
 // Fix for Windows compatibility
@@ -56,6 +58,13 @@ task("processImages", () => {
     .pipe(dest(POST_BUILD_IMAGES));
 })
 
+task("processFiles", () => {
+  browserSync.notify("Compiling files...");
+
+  return src(PRE_BUILD_FILES)
+    .pipe(dest(POST_BUILD_FILES));
+})
+
 task("startServer", () => {
   browserSync.init({
     files: [SITE_ROOT + "/**"],
@@ -71,6 +80,7 @@ task("startServer", () => {
 
   watch(
     [
+      "**/*.pdf",
       "**/*.css",
       "**/*.jpeg",
       "**/*.png",
@@ -88,7 +98,7 @@ task("startServer", () => {
   );
 });
 
-const buildSite = series("buildJekyll", "processStyles", "processImages");
+const buildSite = series("buildJekyll", "processStyles", "processImages", "processFiles");
 
 exports.serve = series(buildSite, "startServer");
 exports.default = series(buildSite);
