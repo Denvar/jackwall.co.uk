@@ -11,7 +11,7 @@ const SITE_ROOT = "./_site";
 const POST_BUILD_STYLESHEET = `${SITE_ROOT}/assets/css/`;
 const PRE_BUILD_STYLESHEET = "./src/style.css";
 const POST_BUILD_IMAGES = `${SITE_ROOT}/assets/images/`;
-const PRE_BUILD_IMAGES = "./src/images/**/*.{jpg,jpeg,png}";
+const PRE_BUILD_IMAGES = "./src/images/**/*.{jpg,jpeg,png,gif}";
 const TAILWIND_CONFIG = "./tailwind.config.js";
 
 // Fix for Windows compatibility
@@ -75,6 +75,7 @@ task("startServer", () => {
       "**/*.jpeg",
       "**/*.png",
       "**/*.jpg",
+      "**/*.gif",
       "**/*.html",
       "**/*.js",
       "**/*.md",
