@@ -14,6 +14,8 @@ const POST_BUILD_IMAGES = `${SITE_ROOT}/assets/images/`;
 const PRE_BUILD_IMAGES = "./src/images/**/*.{jpg,jpeg,png,gif,webp}";
 const POST_BUILD_FILES = `${SITE_ROOT}/assets/files/`;
 const PRE_BUILD_FILES = "./src/files/**/*.*";
+const POST_BUILD_FAVICON = `${SITE_ROOT}`;
+const PRE_BUILD_FAVICON = "./src/favicon/**/*.*";
 const TAILWIND_CONFIG = "./tailwind.config.js";
 
 // Fix for Windows compatibility
@@ -65,6 +67,13 @@ task("processFiles", () => {
     .pipe(dest(POST_BUILD_FILES));
 })
 
+task("processFavicon", () => {
+  browserSync.notify("Compiling favicon...");
+
+  return src(PRE_BUILD_FAVICON)
+    .pipe(dest(POST_BUILD_FAVICON));
+})
+
 task("startServer", () => {
   browserSync.init({
     files: [SITE_ROOT + "/**"],
@@ -99,7 +108,7 @@ task("startServer", () => {
   );
 });
 
-const buildSite = series("buildJekyll", "processStyles", "processImages", "processFiles");
+const buildSite = series("buildJekyll", "processStyles", "processImages", "processFiles", "processFavicon");
 
 exports.serve = series(buildSite, "startServer");
 exports.default = series(buildSite);
