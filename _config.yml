@@ -1,6 +1,8 @@
 title: Tailwind Jekyll Starter Kit
 description: A starter kit for using Tailwind with Jekyll
 
+source: ./src/pages
+
 exclude:
   - Gemfile
   - Gemfile.lock
