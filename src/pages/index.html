@@ -1,0 +1,83 @@
+---
+layout: default
+title: Main
+---
+
+{% include profile.html %}
+
+<!-- <div class="flex flex-row absolute bottom-4 right-10 text-white text-2xl font-extralight">
+  <div class="flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="flex" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+    </svg>
+  </div>
+  <div class="flex flex-col justify-items-centers items-centers justify-centers ml-4 mr-4">
+    Recent Portfolio
+  </div>
+  <div class="flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="flex" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+    </svg>
+  </div>
+</div> -->
+
+<div class="flex flex-col w-full items-center bg-white text-gray-800 p-16 space-y-16">
+  <h1 class="text-8xl text-purple-900 font-semibold mt-12 mb-12">
+    Recent Projects
+  </h1>
+
+  <div class="flex flex-col w-3/4 border-b-2 justify-center items-center max-w-7xl">
+    {% include projects/collective.html %}
+
+    <!-- <div class="pl-3 pr-3 pt-2 pb-2 bg-purple-900  text-white rounded mb-8">
+      <a href="{{ site.baseurl }}/collective">Learn More</a>
+    </div> -->
+  </div>
+
+  <div class="flex flex-col w-3/4 border-b-2 justify-center items-center max-w-7xl">
+    {% include projects/lenny.html %}
+
+    <!-- <div class="pl-3 pr-3 pt-2 pb-2 bg-purple-900  text-white rounded mb-8">
+      <a href="{{ site.baseurl }}/lenny">Learn More</a>
+    </div> -->
+  </div>
+
+  <div class="flex flex-col w-3/4 border-b-2 justify-center items-center max-w-7xl">
+    {% include projects/ctm.html %}
+
+    <!-- <div class="pl-3 pr-3 pt-2 pb-2 bg-purple-900  text-white rounded mb-8">
+      <a href="{{ site.baseurl }}/ctm">Learn More</a>
+    </div> -->
+  </div>
+
+  <div class="flex w-3/4 border-b-2 justify-center max-w-7xl">
+    {% include projects/penny.html %}
+  </div>
+
+  <div class="flex flex-col w-3/4 border-b-2 justify-center items-center max-w-7xl">
+    {% include projects/upshot.html %}
+
+    <!-- <div class="pl-3 pr-3 pt-2 pb-2 bg-purple-900  text-white rounded mb-8">
+      <a href="{{ site.baseurl }}/upshot">Learn More</a>
+    </div> -->
+  </div>
+
+  <div class="flex flex-col w-3/4 justify-center items-center max-w-7xl">
+    {% include projects/togethera.html %}
+
+    <!-- <div class="pl-3 pr-3 pt-2 pb-2 bg-purple-900  text-white rounded mb-8">
+      <a href="{{ site.baseurl }}/togethera">Learn More</a>
+    </div> -->
+  </div>
+
+  <!-- <div class="flex w-3/4 border-b-2 justify-center max-w-7xl">
+    {% include projects/tapto.html %}
+  </div>
+
+  <div class="flex w-3/4 border-b-2 justify-center max-w-7xl">
+    {% include projects/taptowifi.html %}
+  </div> -->
+
+</div>
